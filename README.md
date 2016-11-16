@@ -63,7 +63,18 @@ C:.
 └───test
 ```
 
+### Configurando a Conexão com o banco: 
+A conexão com o banco de dados é configurável através da classe Conector.java dentro de src/arquitetura/model/Conector.java
+Abra o arquivo e altere estas linhas para as configurações do seu banco de dados: 
 
+```java
+//Configurar a sua conexão com o banco de dados por meio dessas variáveis: 
+   private String host     = "localhost"; 
+   private String db       = "myping"; 
+   private String user     = "root"; 
+   private String password = ""; 
+   
+```
 ### Criando um modelo 
 ```java
 package arquitetura.model;
@@ -106,8 +117,9 @@ public class Person extends BaseModel<Person> {
 }
 
 ```
-@Table e @Column são anotações essencias para que o mapeador funcione. Os valores dessas anotações devem compreender o nome real na tabela do banco de dados. 
+@Table e @Column são anotações essencias para que o mapeador funcione. Os valores dessas anotações devem compreender o nome real na tabela do banco de dados.
 
+### Métodos Helpers para os Models
 ### INSERT
 
 ```java
@@ -120,34 +132,88 @@ p.setUpdatedAt("2016-10-19 10:24:35");
       
 p.save(); 
 
-output: INSERT INTO person (name, created_at, updated_at, telegram_id) VALUES ('Allyson', '2016-10-19 10:24:35', '2016-10-19 10:24:35', '123456789')
+output: 
+INSERT INTO person (name, created_at, updated_at, telegram_id) VALUES ('Allyson', '2016-10-19 10:24:35', '2016-10-19 10:24:35', '123456789')
 
 ``` 
 
 ### FIND BY ID
 
 ```java
+Person p = new Person(); 
+      
+p.findById(1); 
+      
+p.getName(); //É isso aí, só isso. nome da pessoa já está aqui. 
 
+output: 
+SELECT * FROM person WHERE id = 1
 
 ``` 
 
 ### UPDATE
 
 ```java
+Person p = new Person(); 
+      
+p.findById(1); 
+      
+p.setName("Marcos de Paula"); 
+      
+p.update(); 
 
-
+output: 
+SELECT * FROM person WHERE id = 1; 
+UPDATE person SET name = 'Marcos de Paula', created_at = '2016-10-19 10:18:49.0', updated_at = '2016-10-19 10:18:49.0', telegram_id = '14124124' WHERE id = 1; 
 ``` 
 
 ### DELETE
-
 ```java
+Person p = new Person(); 
+      
+p.findById(1); 
+      
+p.delete(); 
 
+output: 
+SELECT * FROM person WHERE id = 1
+DELETE FROM person WHERE id = 1
 
 ``` 
 
 ### ALL
 
 ```java
+Person p = new Person(); 
+      
+ArrayList<Person> array = p.all(); 
+     
+for(Person temp: array)
+    System.out.println(temp.getId()); 
 
+output: 
+SELECT * FROM person
+1
+2
+3
+4
+5
+6
+[..]
 
 ``` 
+
+### Classe Helper DB
+
+
+```java
+ResultSet set =  DB.exec("SELECT MAX(id) AS maior_id FROM person"); 
+    
+while(set.next()){
+   System.out.println("Maior id "+ set.getString("maior_id"));
+}
+
+output: 
+Maior id 30
+``` 
+Essa classe tem como finalidae suprir as lacunas das interações limitadas providas pelo BaseModel. 
