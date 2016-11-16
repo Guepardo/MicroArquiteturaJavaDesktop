@@ -211,6 +211,13 @@ ArrayList<Site> array = site.where(" url LIKE '%.php%' or url LIKE '%google%' ")
         
     for(Site s: array)
        System.out.println("label: "+s.getLabel()+" |||  url: "+s.getUrl()); 
+       
+output: 
+SELECT * FROM site WHERE url LIKE '%.php%' or url LIKE '%google%' 
+label: Google.com |||  url: Google.com
+label: Label Atualizado |||  url: http://pt.urbandictionary.com/defidne.php?term=asdfasdf
+label: Teste do delete |||  url: www.google.com.bt
+
 ```
 ### Classe Helper DB
 
