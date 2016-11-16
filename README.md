@@ -119,6 +119,14 @@ public class Person extends BaseModel<Person> {
 ```
 @Table e @Column são anotações essencias para que o mapeador funcione. Os valores dessas anotações devem compreender o nome real na tabela do banco de dados.
 
+Regras de tipos na tabela e no java: 
+```
+TABELA              | jAVA
+int                 |Integer(classe)
+varchar/text        |String
+float               |Float (classe)
+date                |String
+```
 ### Métodos Helpers para os Models
 ### INSERT
 
@@ -211,7 +219,7 @@ ArrayList<Site> array = site.where(" url LIKE '%.php%' or url LIKE '%google%' ")
         
     for(Site s: array)
        System.out.println("label: "+s.getLabel()+" |||  url: "+s.getUrl()); 
-       
+
 output: 
 SELECT * FROM site WHERE url LIKE '%.php%' or url LIKE '%google%' 
 label: Google.com |||  url: Google.com
