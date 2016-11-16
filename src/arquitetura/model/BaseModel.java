@@ -105,7 +105,7 @@ public abstract class BaseModel<T>{
            
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BaseModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return (T) this;
@@ -134,7 +134,7 @@ public abstract class BaseModel<T>{
                 array.add(temp); 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BaseModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return array; 
@@ -163,7 +163,7 @@ public abstract class BaseModel<T>{
                 array.add(temp); 
             }
         } catch (SQLException ex) {
-            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BaseModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return array; 
