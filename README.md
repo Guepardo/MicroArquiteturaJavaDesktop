@@ -203,6 +203,15 @@ SELECT * FROM person
 
 ``` 
 
+### WHERE
+```java
+Site site = new Site(); 
+      
+ArrayList<Site> array = site.where(" url LIKE '%.php%' or url LIKE '%google%' "); 
+        
+    for(Site s: array)
+       System.out.println("label: "+s.getLabel()+" |||  url: "+s.getUrl()); 
+```
 ### Classe Helper DB
 
 

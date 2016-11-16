@@ -9,6 +9,7 @@ import arquitetura.model.Site;
 import arquitetura.util.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 /**
@@ -22,30 +23,12 @@ public class Main {
      */
     public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        Site s = new Site(); 
-        //Select * from site where id = 1; Site.findById(int)
-        System.out.println(s.findById(1).getLabel()); 
-        
-        //Select * from site; Site.all()
-        for( Site temp: s.all()){
-            System.out.println(temp.getId()+" "+ temp.getUrl());
-        }
-        
-        Site a = new Site();
-        
-        a.findById(3); 
-        a.setLabel("Label Atualizado");
-        
-        //Gera query Update de acordo com o contexto do objeto
-        a.update(); 
-        
-        
-        //Executa qualquer query e retorna um ResultSet.
-         ResultSet set = DB.exec("SELECT COUNT(*) AS qtd FROM site"); 
+        Site site = new Site(); 
       
-        while(set.next()){
-            System.out.println(set.getString("qtd"));
-        }
+        ArrayList<Site> array = site.where(" url LIKE '%.php%' or url LIKE '%google%' "); 
+        
+        for(Site s: array)
+            System.out.println("label: "+s.getLabel()+" |||  url: "+s.getUrl()); 
     
     }
     

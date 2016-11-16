@@ -140,6 +140,35 @@ public abstract class BaseModel<T>{
         return array; 
     }
    
+   public ArrayList<T> where(String where ){
+        String query = "SELECT * FROM " + getNameTableInstance()+" WHERE"+ where; 
+        ResultSet result =  executeQueryResultSet(query); 
+       
+        ArrayList<T> array = new ArrayList(); 
+        
+        try {
+            while(result.next()){
+               T temp = null;
+                try {
+                    temp = (T) this.getClass().newInstance();
+                } catch (InstantiationException | IllegalAccessException ex) {
+                    Logger.getLogger(BaseModel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                 Field[] f = getFieldsInstance(); 
+                
+                for(Field field: f)
+                   setFieldValue(field, result, temp); 
+                
+                array.add(temp); 
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Person.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return array; 
+    }
+   
    private void setFieldValue(Field f, ResultSet result) throws SQLException{
        String p = f.getType().toString(); 
        String name = getNameFieldByAnnotation(f); 
