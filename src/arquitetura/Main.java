@@ -7,6 +7,7 @@ package arquitetura;
 
 import arquitetura.model.Site;
 import arquitetura.util.DB;
+import arquitetura.view.Principal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,14 +23,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
-        // TODO code application logic here
-        Site site = new Site(); 
-      
-        ArrayList<Site> array = site.where(" url LIKE '%.php%' or url LIKE '%google%' "); 
-        
-        for(Site s: array)
-            System.out.println("label: "+s.getLabel()+" |||  url: "+s.getUrl()); 
-    
+       new Principal().setVisible(true); 
     }
     
 }

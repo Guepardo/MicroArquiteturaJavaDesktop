@@ -70,7 +70,7 @@ Abra o arquivo e altere estas linhas para as configurações do seu banco de dad
 ```java
 //Configurar a sua conexão com o banco de dados por meio dessas variáveis: 
    private String host     = "localhost"; 
-   private String db       = "myping"; 
+   private String db       = "db_name"; 
    private String user     = "root"; 
    private String password = ""; 
    
@@ -121,7 +121,7 @@ public class Person extends BaseModel<Person> {
 
 Regras de tipos na tabela e no java: 
 ```
-TABELA              | jAVA
+TABELA              |JAVA
 int                 |Integer(classe)
 varchar/text        |String
 float               |Float (classe)
